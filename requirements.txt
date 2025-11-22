@@ -1,0 +1,12 @@
+pandas
+numpy
+scikit-learn
+joblib
+streamlit
+matplotlib
+seaborn
+xgboost      # only if you installed
+imbalanced-learn 
+pdfminer.six
+python-docx
+REQ
