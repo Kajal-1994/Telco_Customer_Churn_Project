@@ -71,7 +71,7 @@ Building a unified preprocessing pipeline (ColumnTransformer)
 
 The EDA reveals:
 
-Churn rate ≈ 26% (imbalanced dataset)
+Churn rate ≈ 26% (imbanced dataset)
 
 High risk factors:
 
