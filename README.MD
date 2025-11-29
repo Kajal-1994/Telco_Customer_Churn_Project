@@ -25,6 +25,7 @@ venv\Scripts\activate        # Windows
 pip install -r requirements.txt
 
 📂 Folder Structure
+
 Telco_Customer_Churn_Prediction/
 │
 ├── data/
