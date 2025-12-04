@@ -1,12 +1,9 @@
-from re import M
-import streamlit as st
+import streamlit as st  # To build the web app.
 import joblib
 import pandas as pd
-from pathlib import Path
+from pathlib import Path  # Used to check if the model file exists on system.
 
-from train import Model_Path
-
-Model_Path = "C:\\Users\\STPIM\\Desktop\\Telco_Customer_Churn_Prediction\\model.joblib"
+Model_Path = "C:\\Users\\STPIM\\Desktop\\Telco_Customer_Churn_Prediction\\models\\model.joblib"
 
 st.set_page_config(page_title = "Customer Churn Prediction", layout = "centered")
 st.title("Customer Churn Prediction App")   
@@ -39,8 +36,8 @@ else:
         "PaymentMethod",
         ["Electronic check", "Mailed check", "Bank transfer (automatic)", "Credit card (automatic)"]
     )
-    MonthlyCharges = st.number_input("MonthlyCharges", min_value=0.0, max_value=1000.0, value=70.0)
-    TotalCharges = st.number_input("TotalCharges", min_value=0.0, max_value=100000.0, value=2000.0)
+    MonthlyCharges = st.number_input("MonthlyCharges", min_value=0.0, max_value=1000.0)
+    TotalCharges = st.number_input("TotalCharges", min_value=0.0, max_value=100000.0)
 
     if st.button("Predict Churn"):
 
@@ -67,14 +64,28 @@ else:
             "TotalCharges": TotalCharges,  
         }
         
+        # Converts the dictionary into a Pandas Dataframe with 1 row.
         input_df = pd.DataFrame([input_dict])
 
         # Apply same preprocessing
+        # Uses preprocessor(loaded fron.joblib file)to
+        # Impute missing values
+        # scale numeric features
+        # One-hot encode categorical features
+        # Xt is now a numeric numpy array-ready for the model.
         
         Xt = preprocessor.transform(input_df)
 
-        # Predict
-        prob = model.predict_proba(Xt)[:, 1][0]
+        # Make the Predictions.
+        # model.predict_proba(Xt) → returns probabilities for both classes (0 and 1).
+        # [:, 1] → takes the probability of class 1 (Churn).
+        # [0] → since there’s only 1 row, take the first value.
+        prob = model.predict_proba(Xt)[:, 1][0]  
+        
+       
+        # model.predict(Xt) → returns predicted class (0 or 1).
+        # [0] → get the first prediction.
+        
         pred = model.predict(Xt)[0]
 
         st.subheader("Result")
