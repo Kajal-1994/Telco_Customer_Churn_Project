@@ -2,8 +2,7 @@ import streamlit as st  # To build the web app.
 import joblib
 import pandas as pd
 from pathlib import Path  # Used to check if the model file exists on system.
-
-Model_Path = "C:\\Users\\STPIM\\Desktop\\Telco_Customer_Churn_Prediction\\models\\model.joblib"
+from train import Model_Path
 
 st.set_page_config(page_title = "Customer Churn Prediction", layout = "centered")
 st.title("Customer Churn Prediction App")   

@@ -116,10 +116,10 @@ def main():
     # Save final pipeline (model + preprocessor)
     
     final_model = rf
-    Path("Model_Path").mkdir(parents=True, exist_ok=True)
+    Path(Model_Path).parent.mkdir(parents=True, exist_ok=True)
 
     # save a tuple (model, preprocessor) so inference can load both
-    joblib.dump((final_model,fitted_preproc),str(Model_Path))
+    joblib.dump((final_model,fitted_preproc),(Model_Path))
     print("Saved pipeline (model + preprocessor) to:",Model_Path)
 
 
